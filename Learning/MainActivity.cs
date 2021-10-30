@@ -22,10 +22,12 @@ namespace Learning
             MyValue = 0;
             ButtonIncrement = FindViewById<Button>(Resource.Id.PleaseIncrement);
             ButtonDecrement = FindViewById<Button>(Resource.Id.PleaseDecrement);
+            ButtonNavigateAway = FindViewById<Button>(Resource.Id.NavigateAway);
 
             //Assign
             ButtonIncrement.Click += Inc;
             ButtonDecrement.Click += Dec;
+            ButtonNavigateAway.Click += NavigateAwayNow;
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -39,6 +41,7 @@ namespace Learning
         public TextView MyTextView;
         public Button ButtonIncrement;
         public Button ButtonDecrement;
+        public Button ButtonNavigateAway;
         
 
         public void Inc(object sender, EventArgs e)
@@ -51,6 +54,11 @@ namespace Learning
         {
             MyValue = MyValue - 1;
             MyTextView.Text = MyValue.ToString("#,##0");
+        }
+
+        public void NavigateAwayNow(object sender, EventArgs e)
+        {
+            SetContentView(Resource.Layout.page2);
         }
     
     }
