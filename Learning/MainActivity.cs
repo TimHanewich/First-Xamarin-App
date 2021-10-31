@@ -23,11 +23,17 @@ namespace Learning
             ButtonIncrement = FindViewById<Button>(Resource.Id.PleaseIncrement);
             ButtonDecrement = FindViewById<Button>(Resource.Id.PleaseDecrement);
             ButtonNavigateAway = FindViewById<Button>(Resource.Id.NavigateAway);
+            EditText_ToSaveToLocal = FindViewById<EditText>(Resource.Id.EditText_ToSaveToLocal);
+            Button_SaveToLocal = FindViewById<Button>(Resource.Id.Button_SaveLocalFile);
+            TextView_FromLocal = FindViewById<TextView>(Resource.Id.TextView_LocalFileContent);
+            Button_RetrieveFromLocal = FindViewById<Button>(Resource.Id.Button_RetrieveFromLocal);
 
             //Assign
             ButtonIncrement.Click += Inc;
             ButtonDecrement.Click += Dec;
             ButtonNavigateAway.Click += NavigateAwayNow;
+            Button_SaveToLocal.Click += SaveToLocal;
+            Button_RetrieveFromLocal.Click += RetrieveFromLocal;
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -42,6 +48,10 @@ namespace Learning
         public Button ButtonIncrement;
         public Button ButtonDecrement;
         public Button ButtonNavigateAway;
+        public EditText EditText_ToSaveToLocal;
+        public Button Button_SaveToLocal;
+        public Button Button_RetrieveFromLocal;
+        public TextView TextView_FromLocal;
         
 
         public void Inc(object sender, EventArgs e)
@@ -59,6 +69,27 @@ namespace Learning
         public void NavigateAwayNow(object sender, EventArgs e)
         {
             SetContentView(Resource.Layout.page2);
+        }
+
+        public void SaveToLocal(object sender, EventArgs e)
+        {
+            string TextToSave = EditText_ToSaveToLocal.Text;
+
+            string Path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Test.txt");
+            System.IO.File.WriteAllText(Path, TextToSave);
+            
+            Android.App.AlertDialog.Builder ad = new Android.App.AlertDialog.Builder(this);
+            ad.SetTitle("Done");
+            ad.SetMessage("Success!. I saved that.");
+            ad.SetNeutralButton("okay", delegate { ad.Dispose(); });
+            ad.Show();
+        }
+
+        public void RetrieveFromLocal(object sender, EventArgs e)
+        {
+            string Path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Test.txt");
+            string content = System.IO.File.ReadAllText(Path);
+            TextView_FromLocal.Text = content;
         }
     
     }
