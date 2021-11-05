@@ -10,14 +10,19 @@
     
     
     <LinearLayout
+        android:id="@+id/LinearLayout_AddHere"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include android:id="@+id/Include_Row1" layout="@layout/component_lineitem"></include>
-        <include android:id="@+id/Include_Row2" layout="@layout/component_lineitem"></include>
-        <include android:id="@+id/Include_Row3" layout="@layout/component_lineitem"></include>
-        <include android:id="@+id/Include_Row4" layout="@layout/component_lineitem"></include>
+        
+        <ViewStub
+            android:id="@+id/ViewStub_MyViewStub"
+            android:layout="@layout/component_lineitem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 

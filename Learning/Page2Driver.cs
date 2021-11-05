@@ -19,12 +19,21 @@ namespace Learning
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.page2);
 
-            //View v = FindViewById<View>(Resource.Id.Include_Row1);
-            //TextView col1 = v.FindViewById<TextView>(Resource.Id.TextView_Col1);
-            //col1.Text = "bmw g310r";
+            for (int t = 0; t < 10; t++)
+            {
+                TextView tv = new TextView(this);
+                tv.Text = "Simpsons " + t.ToString();
+                FindViewById<LinearLayout>(Resource.Id.LinearLayout_AddHere).AddView(tv);
+            }
 
-            TextView col1 = FindViewById<TextView>(Resource.Id.TextView_Col1);
-            col1.Text = "bmw g310r";
+            ViewStub vs = new ViewStub(this);
+            vs.LayoutResource = Resource.Layout.Component_LineItem;
+            FindViewById<LinearLayout>(Resource.Id.LinearLayout_AddHere).AddView(vs);
+            View v = vs.Inflate();
+
+            //Change vs column 1
+            TextView col1 = v.FindViewById<TextView>(Resource.Id.TextView_Col1);
+            col1.Text = "HIT & RUN!";
 
 
         }
