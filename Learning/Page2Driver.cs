@@ -21,21 +21,31 @@ namespace Learning
 
             for (int t = 0; t < 10; t++)
             {
-                TextView tv = new TextView(this);
-                tv.Text = "Simpsons " + t.ToString();
-                FindViewById<LinearLayout>(Resource.Id.LinearLayout_AddHere).AddView(tv);
+                ViewStub vs = new ViewStub(this);
+                vs.LayoutResource = Resource.Layout.Component_SessionSelector;
+                FindViewById<LinearLayout>(Resource.Id.LinearLayout_AddHere).AddView(vs);
+                View v = vs.Inflate();
+                v.FindViewById<TextView>(Resource.Id.TextView_Title).Text = "Row number " + t.ToString();
+
+                Button b = v.FindViewById<Button>(Resource.Id.Button_Select);
+                b.Click += RowSelected;
             }
 
-            ViewStub vs = new ViewStub(this);
-            vs.LayoutResource = Resource.Layout.Component_LineItem;
-            FindViewById<LinearLayout>(Resource.Id.LinearLayout_AddHere).AddView(vs);
-            View v = vs.Inflate();
 
-            //Change vs column 1
-            TextView col1 = v.FindViewById<TextView>(Resource.Id.TextView_Col1);
-            col1.Text = "HIT & RUN!";
+        }
 
+        private void RowSelected(object sender, EventArgs e)
+        {
+            UpdateStatus("Got a click!");
+            Button b = (Button)sender;
+            View v = (View)b.Parent;
+            TextView tv = v.FindViewById<TextView>(Resource.Id.TextView_Title);
+            UpdateStatus(tv.Text);
+        }
 
+        private void UpdateStatus(string txt)
+        {
+            FindViewById<TextView>(Resource.Id.TextView_Status).Text = txt;
         }
     }
 }
