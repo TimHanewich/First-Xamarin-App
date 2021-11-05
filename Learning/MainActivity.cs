@@ -68,7 +68,7 @@ namespace Learning
 
         public void NavigateAwayNow(object sender, EventArgs e)
         {
-            SetContentView(Resource.Layout.page2);
+            StartActivity(typeof(Page2Driver));
         }
 
         public void SaveToLocal(object sender, EventArgs e)

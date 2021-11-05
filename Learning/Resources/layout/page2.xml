@@ -8,32 +8,13 @@
     tools:gridSpec="1|8|#0093eeff|K:#ee8700ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r">
 
     
+    
 
 
-    <LinearLayout
-        android:background="#F0F"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:background="#34C42A"
-            android:layout_weight="1"
-            android:layout_width="match_parent"/>
-
-        <View
-            android:background="#C02232"
-            android:layout_weight="5"
-            android:layout_width="match_parent"/>
+    <include android:id="@+id/Include_Row1" layout="@layout/component_lineitem"></include>
 
 
-        <View
-            android:background="#281D4D"
-            android:layout_weight="1"
-            android:layout_width="match_parent"/>
-
-
-    </LinearLayout>
+    
 
 
 </RelativeLayout>
