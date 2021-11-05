@@ -19,11 +19,13 @@ namespace Learning
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.page2);
 
-            View v = FindViewById<View>(Resource.Id.Include_Row1);
+            //View v = FindViewById<View>(Resource.Id.Include_Row1);
+            //TextView col1 = v.FindViewById<TextView>(Resource.Id.TextView_Col1);
+            //col1.Text = "bmw g310r";
 
-            TextView col1 = v.FindViewById<TextView>(Resource.Id.TextView_Col1);
+            TextView col1 = FindViewById<TextView>(Resource.Id.TextView_Col1);
             col1.Text = "bmw g310r";
-            
+
 
         }
     }
